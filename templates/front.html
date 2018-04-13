@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body>
+  <h1>Bob Loblaw's Law Blog</h1>
+
+  <hr>
+  {% for blog in blogs %}
+    <div class="blog">
+      <div class="blog-title"><a href="/blog/{{blog.key().id()}}">
+        {{blog.subject}}</a></div>
+      <pre class="blog-body">{{blog.content}}</pre>
+      <br>
+      <pre class="blog-date">{{blog.created}}</pre>
+      {% if flag == 1 %}
+      <div><a href="/editpost/{{blog.key().id()}}">Edit</a>
+        <a href="/delete/{{blog.key().id()}}">Delete</a>
+        <a href="/blog/{{blog.key().id()}}">Comments({{blog.number_comments}})</a>
+      {% else %}
+      <div><a href="/blog/{{blog.key().id()}}">Comments({{blog.number_comments}})</a>
+        {% if "|" ~ user ~ "|" in blog.like_users %}
+        <a href=/likepost/{{blog.key().id()}}>Disike</a></div>
+        {% else %}
+        <a href=/likepost/{{blog.key().id()}}>Like</a></div>
+        {% endif %}
+      {% endif %}
+    </div>
+    <hr>
+  {% endfor %}
+  <br>
+  <div><a href="/newpost">New Post</a></div>
+  <div><a href="/logout">Logout</a></div>
+</body>
+
+{% endblock %}

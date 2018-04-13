@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <head>
+    <title>New Comment</title>
+  </head>
+
+  <h1><a href="/">Bob Loblaw's Law Blog</a></h1>
+  <hr>
+  <form method="post">
+
+    <label>
+      <div>Content</div>
+      <textarea name="comment">{{comment}}</textarea>
+    </label>
+
+    <div class="error">{{error}}</div>
+
+    <input type="submit">
+    <div><a href="/blog/{{blogid}}">Back</a></div>
+  </form>
+
+{% endblock %}

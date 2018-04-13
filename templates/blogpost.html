@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1><a href="/">Bob Loblaw's Law Blog</a></h1>
+
+<body>
+
+  <hr>
+    <div class="blog">
+      <div class="blog-title">{{blog.subject}}</div>
+      <pre class="blog-body">{{blog.content}}</pre>
+      <br>
+      <pre class="blog-date">{{blog.created}}</pre>
+      {% if flag == 1 %}
+      <div><a href="/editpost/{{blog.key().id()}}">Edit</a>
+        <a href="/delete/{{blog.key().id()}}">Delete</a>
+        {% if check == 0 %}
+        <a href="/newcomment/{{blog.key().id()}}">Add Comment({{blog.number_comments}})</a>
+        {% endif %}
+      {% else %}
+      {% if check == 0 %}
+      <div><a href="/newcomment/{{blog.key().id()}}">Add Comment({{blog.number_comments}})</a>
+      {% endif %}
+        <a href=/likepost/{{blog.key().id()}}>Like</a></div>
+      {% endif %}
+      <br>
+      <hr>
+      {% for comment in comments %}
+      <div class = "comment">
+        <div class= "commenter">{{comment.commenter}}</div>
+        <div class = "content">{{comment.comment}}</div>
+        <br>
+        {% if comment.commenter == logged %}
+        <div><a href="/editcomment/{{blog.key().id()}}">Edit</a>
+          <a href="/deletecomment/{{blog.key().id()}}">Delete</a>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div><a href="/frontpage/{{blog.author}}">Back</a></div>
+</body>
+
+{% endblock %}

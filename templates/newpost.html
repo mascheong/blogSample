@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <head>
+    <title>New Blog Post</title>
+  </head>
+
+  <h1><a href="/">Bob Loblaw's Law Blog</a></h1>
+  <hr>
+  <form method="post">
+    <label>
+      <div>Subject</div>
+      <input type="text" name="subject" value="{{subject}}">
+    </label>
+
+    <label>
+      <div>Content</div>
+      <textarea name="content">{{content}}</textarea>
+    </label>
+
+    <div class="error">{{error}}</div>
+
+    <input type="submit">
+    <div><a href="/frontpage/{{user}}">Back</a></div>
+  </form>
+
+{% endblock %}
